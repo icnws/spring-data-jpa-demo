@@ -55,6 +55,18 @@ public class CustomerController {
     }
 
     /**
+     * 查询FirstName为指定用户昵称
+     */
+    @RequestMapping("/findByFirstName")
+    public void findByFirstName(){
+        Customer customer = repository.findByFirstName("Bauer");
+        if(customer!=null){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
      * 查询ID为1的数据
      */
     @RequestMapping("/findOne")

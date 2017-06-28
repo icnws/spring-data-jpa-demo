@@ -1,10 +1,13 @@
 package com.example.demo.dto;
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@NamedQuery(name="Customer.findByFirstName",query = "select c from Customer c where c.firstName = ?1")
 public class Customer {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
