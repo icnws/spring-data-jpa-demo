@@ -3,9 +3,11 @@ package com.example.demo.web;
 import com.example.demo.dto.Customer;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +41,41 @@ public class CustomerController {
         List<Customer> result = repository.findAll();
         for (Customer customer:result){
             System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * 查询ID为1的数据
+     */
+    @RequestMapping("/delete")
+    public void delete(){
+
+        System.out.println("删除前数据：");
+        List<Customer> customers = repository.findAll();
+        for (Customer customer:customers){
+            System.out.println(customer.toString());
+        }
+
+        System.out.println("删除ID=3数据：");
+        repository.delete(3l);
+
+        System.out.println("删除后数据：");
+        customers = repository.findAll();
+        for (Customer customer:customers){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * 查询ID为1的数据
+     */
+    @RequestMapping("/findOne")
+    public void findOne(){
+        Customer result = repository.findOne(1L);
+        if(result!=null){
+            System.out.println(result.toString());
         }
         System.out.println("-------------------------------------------");
     }
@@ -129,39 +166,49 @@ public class CustomerController {
         }
         System.out.println("-------------------------------------------");
     }
+
     /**
-     * 查询ID为1的数据
+     * @Query注解方式查询,
+     * 用@Param指定参数，匹配firstName和lastName
      */
-    @RequestMapping("/findOne")
-    public void findOne(){
-        Customer result = repository.findOne(1L);
-        if(result!=null){
-            System.out.println(result.toString());
-        }
-        System.out.println("-------------------------------------------");
-    }
-    /**
-     * 查询ID为1的数据
-     */
-    @RequestMapping("/delete")
-    public void delete(){
-
-        System.out.println("删除前数据：");
-        List<Customer> customers = repository.findAll();
-        for (Customer customer:customers){
-            System.out.println(customer.toString());
-        }
-
-        System.out.println("删除ID=3数据：");
-        repository.delete(3l);
-
-        System.out.println("删除后数据：");
-        customers = repository.findAll();
-        for (Customer customer:customers){
+    @RequestMapping("/findByName4")
+    public void findByName4(){
+        //按照ID倒序排列
+        System.out.println("直接创建sort对象，通过排序方法和属性名");
+        Sort sort = new Sort(Sort.Direction.DESC,"id");
+        List<Customer> result = repository.findByName4("Bauer",sort);
+        for (Customer customer:result){
             System.out.println(customer.toString());
         }
         System.out.println("-------------------------------------------");
+        //按照ID倒序排列
+        System.out.println("通过Sort.Order对象创建sort对象");
+        Sort sortx = new Sort(new Sort.Order(Sort.Direction.DESC,"id"));
+        List<Customer> resultx = repository.findByName4("Bauer",sort);
+        for (Customer customer:result){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+
+        System.out.println("通过排序方法和属性List创建sort对象");
+        List<String> sortProperties = new ArrayList<>();
+        sortProperties.add("id");
+        sortProperties.add("firstName");
+        Sort sort2 = new Sort(Sort.Direction.DESC,sortProperties);
+        List<Customer> result2 = repository.findByName4("Bauer",sort2);
+        for (Customer customer:result2){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+
+        System.out.println("通过创建Sort.Order对象的集合创建sort对象");
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"id"));
+        orders.add(new Sort.Order(Sort.Direction.ASC,"firstName"));
+        List<Customer> result3 = repository.findByName4("Bauer",new Sort(orders));
+        for (Customer customer:result3){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
     }
-
-
 }

@@ -68,4 +68,15 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query(nativeQuery = true,value = "select * from Customer c where c.first_name like concat('%' ,?1,'%') ")
     List<Customer> findByName3(@Param("name") String name);
 
+    /**
+     * 一个参数，匹配两个字段
+     * @param name2
+     * @param sort 指定排序的参数，可以根据需要进行调整
+     * @return
+     * 这里Param的值和=:后面的参数匹配，但不需要和方法名对应的参数值对应
+     *
+     */
+    @Query("select c from Customer c where c.firstName=:name or c.lastName=:name")
+    List<Customer> findByName4(@Param("name") String name2,Sort sort);
+
 }
