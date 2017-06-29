@@ -67,6 +67,69 @@ public class CustomerController {
     }
 
     /**
+     * @Query注解方式查询
+     * 查询FirstName为指定字符串
+     */
+    @RequestMapping("/findByFirstName2")
+    public void findByFirstName2(){
+        Customer customer = repository.findByFirstName2("Bauer");
+        if(customer!=null){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * @Query注解方式查询
+     * 查询LastName为指定字符串
+     */
+    @RequestMapping("/findByLastName2")
+    public void findByLastName2(){
+        List<Customer> result = repository.findByLastName2("Bauer");
+        for (Customer customer:result){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * @Query注解方式查询,
+     * 用@Param指定参数，匹配firstName和lastName
+     */
+    @RequestMapping("/findByName")
+    public void findByName(){
+        List<Customer> result = repository.findByName("Bauer");
+        for (Customer customer:result){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * @Query注解方式查询,使用关键词like
+     * 用@Param指定参数，firstName的结尾为e的字符串
+     */
+    @RequestMapping("/findByName2")
+    public void findByName2(){
+        List<Customer> result = repository.findByName2("e");
+        for (Customer customer:result){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * @Query注解方式查询，模糊匹配关键字e
+     */
+    @RequestMapping("/findByName3")
+    public void findByName3(){
+        List<Customer> result = repository.findByName3("e");
+        for (Customer customer:result){
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
+    }
+    /**
      * 查询ID为1的数据
      */
     @RequestMapping("/findOne")
