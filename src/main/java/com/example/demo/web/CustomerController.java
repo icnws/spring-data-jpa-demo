@@ -211,4 +211,17 @@ public class CustomerController {
         }
         System.out.println("-------------------------------------------");
     }
+
+    /**
+     * 根据FirstName进行修改
+     */
+    @RequestMapping("/modifying")
+    public void modifying(){
+        Integer result = repository.setFixedFirstnameFor("Bauorx","Bauer");
+        if(result!=null){
+            System.out.println("modifying result:"+result);
+        }
+        System.out.println("-------------------------------------------");
+
+    }
 }

@@ -3,8 +3,10 @@ package com.example.demo.repositories;
 import com.example.demo.dto.Customer;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -79,4 +81,15 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query("select c from Customer c where c.firstName=:name or c.lastName=:name")
     List<Customer> findByName4(@Param("name") String name2,Sort sort);
 
+
+    /**
+     * 根据lastName去更新firstName，返回结果是更改数据的行数
+     * @param firstName
+     * @param lastName
+     * @return
+     */
+    @Modifying//更新查询
+    @Transactional//开启事务
+    @Query("update Customer c set c.firstName = ?1 where c.lastName = ?2")
+    int setFixedFirstnameFor(String firstName, String lastName);
 }
