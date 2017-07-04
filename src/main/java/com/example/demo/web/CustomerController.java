@@ -3,7 +3,11 @@ package com.example.demo.web;
 import com.example.demo.dto.Customer;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -222,6 +226,26 @@ public class CustomerController {
             System.out.println("modifying result:"+result);
         }
         System.out.println("-------------------------------------------");
-
+    }
+    /**
+     * 分页
+     * 应用查询提示@QueryHints，这里是在查询的适合增加了一个comment
+     * 查询结果是lastName和firstName都是bauer这个值的数据
+     */
+    @RequestMapping("/pageable")
+    public void pageable(){
+        //Pageable是接口，PageRequest是接口实现
+        //PageRequest的对象构造函数有多个，page是页数，初始值是0，size是查询结果的条数，后两个参数参考Sort对象的构造方法
+        Pageable pageable = new PageRequest(0,3, Sort.Direction.DESC,"id");
+        Page<Customer> page = repository.findByName("bauer",pageable);
+        //查询结果总行数
+        System.out.println(page.getTotalElements());
+        //按照当前分页大小，总页数
+        System.out.println(page.getTotalPages());
+        //按照当前页数、分页大小，查出的分页结果集合
+        for (Customer customer: page.getContent()) {
+            System.out.println(customer.toString());
+        }
+        System.out.println("-------------------------------------------");
     }
 }
