@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.dto.Customer;
+import com.example.demo.dto.CustomerProjection;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -247,5 +249,20 @@ public class CustomerController {
             System.out.println(customer.toString());
         }
         System.out.println("-------------------------------------------");
+    }
+
+    /**
+     * find by projections
+     */
+    @RequestMapping("/findAllProjections")
+    public void findAllProjections(){
+        Collection<CustomerProjection> projections = repository.findAllProjectedBy();
+        System.out.println(projections);
+        System.out.println(projections.size());
+        for (CustomerProjection projection:projections){
+            System.out.println("FullName:"+projection.getFullName());
+            System.out.println("FirstName:"+projection.getFirstName());
+            System.out.println("LastName:"+projection.getLastName());
+        }
     }
 }
