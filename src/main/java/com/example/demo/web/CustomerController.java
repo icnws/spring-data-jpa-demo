@@ -297,12 +297,12 @@ public class CustomerController {
      */
     @RequestMapping("/spec2")
     public void specificationQuery2(){
-        Specification<Customer> spec = new Specification<Customer>() {
-            @Override
-            public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                return cb.like(root.get("firstName"),"%bau%");
-            }
-        };
+//        Specification<Customer> spec = new Specification<Customer>() {
+//            @Override
+//            public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+//                return cb.like(root.get("firstName"),"%bau%");
+//            }
+//        };
         Specification<Customer> spec2 = Specifications
                 .where(SpecificationFactory.containsLike("firstName","bau"))
                 .or(SpecificationFactory.containsLike("lastName","bau"));
