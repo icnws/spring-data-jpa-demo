@@ -3,15 +3,22 @@ package com.example.demo.web;
 import com.example.demo.dto.Customer;
 import com.example.demo.dto.CustomerProjection;
 import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.repositories.CustomerSpecificationRepository;
+import com.example.demo.util.SpecificationFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -263,6 +270,49 @@ public class CustomerController {
             System.out.println("FullName:"+projection.getFullName());
             System.out.println("FirstName:"+projection.getFirstName());
             System.out.println("LastName:"+projection.getLastName());
+        }
+    }
+
+    @Autowired
+    private CustomerSpecificationRepository csr;
+
+    /**
+     *
+     */
+    @RequestMapping("/spec")
+    public void specificationQuery(){
+        Specification<Customer> spec = SpecificationFactory.containsLike("lastName","bau");
+        Pageable pageable = new PageRequest(0,5, Sort.Direction.DESC,"id");
+        Page<Customer> page = csr.findAll(spec,pageable);
+        System.out.println(page);
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getTotalPages());
+        for (Customer c:page.getContent()){
+            System.out.println(c.toString());
+        }
+    }
+
+    /**
+     *
+     */
+    @RequestMapping("/spec2")
+    public void specificationQuery2(){
+        Specification<Customer> spec = new Specification<Customer>() {
+            @Override
+            public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                return cb.like(root.get("firstName"),"%bau%");
+            }
+        };
+        Specification<Customer> spec2 = Specifications
+                .where(SpecificationFactory.containsLike("firstName","bau"))
+                .or(SpecificationFactory.containsLike("lastName","bau"));
+        Pageable pageable = new PageRequest(0,5, Sort.Direction.DESC,"id");
+        Page<Customer> page = csr.findAll(spec2,pageable);
+        System.out.println(page);
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getTotalPages());
+        for (Customer c:page.getContent()){
+            System.out.println(c.toString());
         }
     }
 }
