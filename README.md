@@ -6,7 +6,7 @@
 
 1、[Spring Data JPA系列：基本配置](http://www.icnws.com/?p=491)
 
-2、[Spring Data JPA系列:继承的方法](http://www.icnws.com/?p=497)
+2、[Spring Data JPA系列：继承的方法](http://www.icnws.com/?p=497)
 
 3、[Spring Data JPA系列：创建查询（Query creation）](http://www.icnws.com/?p=508)
 
@@ -28,6 +28,8 @@
 
 12、[Spring Data JPA系列：数据查询（Specification）（一）](http://www.icnws.com/?p=569)
 
+12、[Spring Data JPA系列：数据查询（Specification）（二）](http://www.icnws.com/?p=578)
+
 同时也可以通过社区SpringForAll（[http://spring4all.com/](http://spring4all.com/)）获取文章更新
 
 Spring For All 是什么
@@ -39,7 +41,7 @@ Spring For All 玩最纯粹的技术！做最专业的 Spring 民间组织~
 
 1、[Spring Data JPA系列：基本配置](http://spring4all.com/article/95 "Spring Data JPA系列：基本配置")
 
-2、[Spring Data JPA系列:继承的方法](http://spring4all.com/article/96)
+2、[Spring Data JPA系列：继承的方法](http://spring4all.com/article/96)
 
 3、[Spring Data JPA系列：创建查询（Query creation）](http://spring4all.com/article/98)
 
@@ -60,3 +62,5 @@ Spring For All 玩最纯粹的技术！做最专业的 Spring 民间组织~
 11、[Spring Data JPA系列：数据更新（Update）](http://spring4all.com/article/128)
 
 12、[Spring Data JPA系列：数据查询（Specification）（一）](http://spring4all.com/article/133)
+
+12、[Spring Data JPA系列：数据查询（Specification）（二）](http://spring4all.com/article/139)
