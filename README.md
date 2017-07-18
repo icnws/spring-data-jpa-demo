@@ -28,7 +28,7 @@
 
 12、[Spring Data JPA系列：数据查询（Specification）（一）](http://www.icnws.com/?p=569)
 
-12、[Spring Data JPA系列：数据查询（Specification）（二）](http://www.icnws.com/?p=578)
+13、[Spring Data JPA系列：数据查询（Specification）（二）](http://www.icnws.com/?p=578)
 
 同时也可以通过社区SpringForAll（[http://spring4all.com/](http://spring4all.com/)）获取文章更新
 
@@ -63,4 +63,4 @@ Spring For All 玩最纯粹的技术！做最专业的 Spring 民间组织~
 
 12、[Spring Data JPA系列：数据查询（Specification）（一）](http://spring4all.com/article/133)
 
-12、[Spring Data JPA系列：数据查询（Specification）（二）](http://spring4all.com/article/139)
+13、[Spring Data JPA系列：数据查询（Specification）（二）](http://spring4all.com/article/139)
