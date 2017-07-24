@@ -3,6 +3,7 @@ package com.example.demo.web;
 import com.example.demo.dto.Customer;
 import com.example.demo.dto.MyOrder;
 import com.example.demo.repositories.MyOrderRepository;
+import com.example.demo.util.SpecificationFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/17 0017.
@@ -118,6 +121,18 @@ public class ShoppingController {
                 return p1;
             }
         };
+        resultPrint(spec);
+    }
+
+
+    @RequestMapping("/q5")
+    public void specification5() {
+        List<Long> list = new ArrayList<>();
+        list.add(1l);
+        list.add(2l);
+        list.add(4l);
+        Specification<MyOrder> spec = SpecificationFactory.in("id", list);
+
         resultPrint(spec);
     }
 
