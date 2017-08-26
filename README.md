@@ -30,6 +30,8 @@
 
 13、[Spring Data JPA系列：数据查询（Specification）（二）](http://www.icnws.com/2017/spring-data-jpa-Specification-2nd/)
 
+14、[Spring Boot整合Quartz实现定时任务表配置](http://www.icnws.com/2017/145-spring-boot-quartz-editable/)
+
 同时也可以通过社区SpringForAll（[http://spring4all.com/](http://spring4all.com/)）获取文章更新
 
 Spring For All 是什么
