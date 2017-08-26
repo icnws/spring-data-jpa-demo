@@ -14,20 +14,29 @@ import java.text.ParseException;
 
 public class SchedulerUtil {
 
+    //定时任务Scheduler的工厂类，Quartz提供
     private static StdSchedulerFactory schedulerFactory = new StdSchedulerFactory();
-
+    //CronTrigger的工厂类
     private static CronTriggerFactoryBean factoryBean = new CronTriggerFactoryBean();
-
+    //JobDetail的工厂类
     private static JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
-
+    //自动注入Spring Bean的工厂类
     private static AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
-
+    //定时任务Scheduler的工厂类，Spring Framework提供
     private static SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
 
     static {
+        //加载指定路径的配置
         schedulerFactoryBean.setConfigLocation(new ClassPathResource("quartz.properties"));
     }
 
+    /**
+     * 创建定时任务，根据参数，创建对应的定时任务，并使之生效
+     *
+     * @param config
+     * @param context
+     * @return
+     */
     public static boolean createScheduler(JobConfig config, ApplicationContext context) {
         try {
             //创建新的定时任务
@@ -39,6 +48,7 @@ public class SchedulerUtil {
     }
 
     /**
+     * 删除旧的定时任务，创建新的定时任务
      * @param oldConfig
      * @param config
      * @param context
@@ -64,7 +74,13 @@ public class SchedulerUtil {
         return false;
     }
 
-
+    /**
+     * 提取的删除任务的方法
+     * @param oldName
+     * @param oldGroupName
+     * @return
+     * @throws SchedulerException
+     */
     private static Boolean delete(String oldName, String oldGroupName) throws SchedulerException {
         TriggerKey key = new TriggerKey(oldName, oldGroupName);
         Scheduler oldScheduler = schedulerFactory.getScheduler();
@@ -76,6 +92,12 @@ public class SchedulerUtil {
         return true;
     }
 
+    /**
+     * 提取出的创建定时任务的方法
+     * @param config
+     * @param context
+     * @return
+     */
     private static Boolean create(JobConfig config, ApplicationContext context) {
         try {
             //创建新的定时任务
@@ -118,7 +140,6 @@ public class SchedulerUtil {
 
     /**
      * 根据指定的参数，创建JobDetail
-     *
      * @param clazz
      * @param name
      * @param groupName
@@ -158,6 +179,4 @@ public class SchedulerUtil {
         }
         return factoryBean.getObject();
     }
-
-
 }

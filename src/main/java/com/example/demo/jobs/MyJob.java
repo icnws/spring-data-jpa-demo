@@ -17,8 +17,6 @@ public class MyJob implements Job {
     private JobConfigService jobConfigService;
 
     public void execute(JobExecutionContext context) {
-//        JobConfigService jobConfigService = (JobConfigService) context.getMergedJobDataMap().get("jobConfigService");
-        System.out.println();
         System.out.println();
         System.out.println();
         System.out.println(context.getJobDetail().getDescription());
