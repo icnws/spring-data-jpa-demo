@@ -21,6 +21,7 @@
 8、[Spring Data JPA系列：应用查询提示（Applying query hints）](http://www.icnws.com/2017/spring-data-jpa-applying-query-hints/)
 
 9、[Spring Data JPA系列：分页（Pageable）](http://www.icnws.com/2017/spring-data-jpa-pageable/)
+  9.1、例子 [https://www.cnblogs.com/hdwang/p/7843405.html](https://www.cnblogs.com/hdwang/p/7843405.html)
 
 10、[Spring Data JPA系列：投影(Projection)的用法](http://www.icnws.com/2017/spring-data-jpa-Projection/)
 
