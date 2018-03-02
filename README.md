@@ -41,29 +41,3 @@ Spring For All 是什么
 关于Spring 的一切
 「接地气版」
 Spring For All 玩最纯粹的技术！做最专业的 Spring 民间组织~
-
-1、[Spring Data JPA系列：基本配置](http://spring4all.com/article/95)
-
-2、[Spring Data JPA系列：继承的方法](http://spring4all.com/article/96)
-
-3、[Spring Data JPA系列：创建查询（Query creation）](http://spring4all.com/article/98)
-
-4、[Spring Data JPA系列：预定义查询(NamedQueries)](http://spring4all.com/article/100)
-
-5、[Spring Data JPA系列：使用@Query注解（Using @Query）](http://spring4all.com/article/104)
-
-6、[Spring Data JPA系列：使用Sort进行排序（Using Sort）](http://spring4all.com/article/105)
-
-7、[Spring Data JPA系列：使用@Modifying修改（Modifying Queries）](http://spring4all.com/article/110)
-
-8、[Spring Data JPA系列：应用查询提示（Applying query hints）](http://spring4all.com/article/114)
-
-9、[Spring Data JPA系列：分页（Pageable）](http://spring4all.com/article/118)
-
-10、[Spring Data JPA系列：投影(Projection)的用法](http://spring4all.com/article/119)
-
-11、[Spring Data JPA系列：数据更新（Update）](http://spring4all.com/article/128)
-
-12、[Spring Data JPA系列：数据查询（Specification）（一）](http://spring4all.com/article/133)
-
-13、[Spring Data JPA系列：数据查询（Specification）（二）](http://spring4all.com/article/139)
