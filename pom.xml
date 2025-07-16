@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
-			<version>3.5.0</version>
+			<version>1.5.4.RELEASE</version>
 		</dependency>
 
         <!--简化Domain代码-->
